@@ -36,7 +36,7 @@ backgroundCorner.Parent = mainBackground
 local title = Instance.new("TextButton")
 title.Name = "title"
 title.AutoButtonColor = false
-title.Parent = Background
+title.Parent = mainBackground
 title.BackgroundColor3 = Color3.fromRGB(250, 100, 100)
 title.BorderSizePixel = 0
 title.Size = UDim2.new(1, 0, .1, 0)
@@ -52,7 +52,7 @@ title.MouseButton1Up:Connect(function()Dragg = false end)
 
 local Close = Instance.new("TextButton")
 Close.Name = "Close"
-Close.Parent = Background
+Close.Parent = mainBackground
 Close.BackgroundColor3 = Color3.fromRGB(155, 0, 0)
 Close.BorderSizePixel = 0
 Close.AnchorPoint = Vector2.new(1,0)
