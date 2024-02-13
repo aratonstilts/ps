@@ -7,7 +7,7 @@ local gameBar = fishingGame:WaitForChild("GameBar")
 local camera = workspace.CurrentCamera
 
 local function clickScreen()
-  local screenSize = Camera.ViewportSize
+  local screenSize = camera.ViewportSize
 	VirtualInputManager:SendTouchEvent(1, 0, screenSize.X/2, screenSize.Y/2)
   task.wait()
   VirtualInputManager:SendTouchEvent(1, 2, screenSize.X/2, screenSize.Y/2)
