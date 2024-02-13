@@ -13,13 +13,10 @@ local function clickScreen()
   	VIP:SendTouchEvent(1, 2, screenSize.X/2, screenSize.Y/2)
 end
 
---while Toggled58 == true do
-	
-  v = 0
-  clickScreen()
-           
+task.wait(2)
+
+while true do
+ 	clickScreen()
 	task.wait(2)
-    
 	repeat clickScreen() task.wait() until fishingGame.Enabled == false
-	
---end
+end
