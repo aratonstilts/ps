@@ -2,7 +2,6 @@ local Player = game:GetService("Players").LocalPlayer
 local playerGUI = Player.PlayerGui
 local instances = playerGUI:WaitForChild("_INSTANCES")
 local fishingGame = instances:WaitForChild("FishingGame")
-local gameBar = fishingGame:WaitForChild("GameBar")
 
 local camera = workspace.CurrentCamera
 local VIP = game:GetService("VirtualInputManager")
@@ -21,6 +20,6 @@ end
            
 	task.wait(2)
     
-	repeat clickScreen() task.wait() until gameBar.Visible == false
+	repeat clickScreen() task.wait() until fishingGame.Enabled == false
 	
 --end
