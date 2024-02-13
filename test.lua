@@ -17,6 +17,8 @@ task.wait(2)
 
 while true do
  	clickScreen()
-	task.wait(2)
+	task.wait(3)
+	clickScreen()
+	task.wait(0.5)
 	repeat clickScreen() task.wait() until fishingGame.Enabled == false
 end
