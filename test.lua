@@ -4,6 +4,8 @@ local instances = playerGUI:WaitForChild("_INSTANCES")
 local fishingGame = instances:WaitForChild("FishingGame")
 local gameBar = fishingGame:WaitForChild("GameBar")
 
+local camera = workspace.CurrentCamera
+
 local function clickScreen()
   local screenSize = Camera.ViewportSize
 	VirtualInputManager:SendTouchEvent(1, 0, screenSize.X/2, screenSize.Y/2)
