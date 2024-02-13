@@ -50,6 +50,14 @@ Dragg = false
 title.MouseButton1Down:Connect(function()Dragg = true while Dragg do game.TweenService:Create(mainBackground, TweenInfo.new(.06), {Position = UDim2.new(0,GetM.X-60,0,GetM.Y-15)}):Play()wait()end end)
 title.MouseButton1Up:Connect(function()Dragg = false end)
 
+local titleStroke = Instance.new("UIStroke")
+titleStroke.Thickness = 2
+titleStroke.Parent = title
+
+local titleCorner = Instance.new("UICorner")
+titleCorner.CornerRadius = UDim.new(0.3, 0)
+titleCorner.Parent = title
+
 local Close = Instance.new("TextButton")
 Close.Name = "Close"
 Close.Parent = mainBackground
