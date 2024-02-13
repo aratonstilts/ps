@@ -75,6 +75,14 @@ Close.MouseButton1Click:Connect(function()
 	gui:Destroy()
 end)
 
+local closeStroke = Instance.new("UIStroke")
+closeStroke.Thickness = 2
+closeStroke.Parent = Close
+
+local closeCorner = Instance.new("UICorner")
+closeCorner.CornerRadius = UDim.new(0.3, 0)
+closeCorner.Parent = Close
+
 local function clickScreen()
   	local screenSize = camera.ViewportSize
 	VIP:SendTouchEvent(1, 0, screenSize.X/2, screenSize.Y/2)
