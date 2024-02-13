@@ -1,6 +1,6 @@
 local Player = game:GetService("Players").LocalPlayer
 local playerGUI = Player.PlayerGui
-local instances = playerGui:WaitForChild("_INSTANCES")
+local instances = playerGUI:WaitForChild("_INSTANCES")
 local fishingGame = instances:WaitForChild("FishingGame")
 local gameBar = fishingGame:WaitForChild("GameBar")
 
