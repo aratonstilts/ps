@@ -139,10 +139,10 @@ local function makeCameraScriptable()
 	end
 end
 
-local function focusCamera(block)
+local function focusCamera(position)
 	makeCameraScriptable()
 	
-	camera.CFrame = CFrame.new(HR.Position, block.Position)
+	camera.CFrame = CFrame.new(HR.Position, position)
 end
 
 local timeout = 600
