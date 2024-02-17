@@ -134,6 +134,9 @@ autoFish.MouseButton1Click:Connect(function()
 end)
 
 local function makeCameraScriptable()
+
+	player.CameraMaxZoomDistance = 0.01
+	
 	if camera.CameraType ~= Enum.CameraType.Scriptable then
 		camera.CameraType = Enum.CameraType.Scriptable
 	end
@@ -159,6 +162,7 @@ local function mineBlock(block)
 	until block == nil or block.Parent == nil or block.Transparency == 1 or attempts == timeout
 	
 	tapUp()
+	player.CameraMaxZoomDistance = 60
 end
 
 local distance = Instance.new("TextBox")
