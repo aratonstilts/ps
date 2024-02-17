@@ -215,7 +215,7 @@ autoMine.MouseButton1Click:Connect(function()
 		
 			if distance.Text == nil or distance.Text == "" then distance.Text = 30 end
 		
-			if block:IsA("Part") (HR.Position - block.Position).Magnitude < distance.Text then
+			if block:IsA("Part") and (HR.Position - block.Position).Magnitude < distance.Text then
 				mineBlock(block)
 			end		
 		end
