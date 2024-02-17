@@ -1,4 +1,6 @@
 local Player = game:GetService("Players").LocalPlayer
+local character = Player.Character or Player.CharacterAdded:Wait()
+local HR = character:WaitForChild("HumanoidRootPart")
 local playerGUI = Player.PlayerGui
 local instances = playerGUI:WaitForChild("_INSTANCES")
 local fishingGame = instances:WaitForChild("FishingGame")
@@ -139,7 +141,7 @@ end
 local function focusCamera(block)
 	makeCameraScriptable()
 	
-	camera.CFrame = CFrame.new(Player.Position, block.Position)
+	camera.CFrame = CFrame.new(HR.Position, block.Position)
 end
 
 local timeout = 600
@@ -153,7 +155,7 @@ local function mineBlock(block)
 	repeat 
 	attempts = attempts + 1 
 	task.wait() 
-	until block.Parent == nil or block.Transparency = 1 or attempts == timeout
+	until block.Parent == nil or block.Transparency == 1 or attempts == timeout
 	
 	tapUp()
 end
