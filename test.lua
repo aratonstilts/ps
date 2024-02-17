@@ -4,6 +4,7 @@ local HR = character:WaitForChild("HumanoidRootPart")
 local playerGUI = Player.PlayerGui
 local instances = playerGUI:WaitForChild("_INSTANCES")
 local fishingGame = instances:WaitForChild("FishingGame")
+local activeInstances = workspace:WaitForChild("__THINGS"):WaitForChild("__INSTANCE_CONTAINER"):WaitForChild("Active")
 
 local camera = workspace.CurrentCamera
 local VIP = game:GetService("VirtualInputManager")
