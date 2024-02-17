@@ -198,6 +198,7 @@ autoMine.MouseButton1Click:Connect(function()
 	if autoMine.Text ~= "Auto-Mine" then
 		autoMine.Text = "Auto-Mine"
 		autoMine.BackgroundColor3 = Color3.fromRGB(100, 50, 50)
+		camera.CameraType = "Custom"
 		return
 	end
 	
