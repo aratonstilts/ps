@@ -75,7 +75,7 @@ end)
 
 local closeStroke = Instance.new("UIStroke")
 closeStroke.Thickness = 2
-stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+closeStroke.ApplyStrokeMode = "Border"
 closeStroke.Parent = Close
 
 local closeCorner = Instance.new("UICorner")
