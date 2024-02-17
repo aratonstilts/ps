@@ -54,10 +54,6 @@ local titleStroke = Instance.new("UIStroke")
 titleStroke.Thickness = 2
 titleStroke.Parent = title
 
-local titleCorner = Instance.new("UICorner")
-titleCorner.CornerRadius = UDim.new(0.3, 0)
-titleCorner.Parent = title
-
 local Close = Instance.new("TextButton")
 Close.Name = "Close"
 Close.Parent = mainBackground
@@ -77,24 +73,31 @@ end)
 
 local closeStroke = Instance.new("UIStroke")
 closeStroke.Thickness = 2
+stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 closeStroke.Parent = Close
 
 local closeCorner = Instance.new("UICorner")
 closeCorner.CornerRadius = UDim.new(0.3, 0)
 closeCorner.Parent = Close
 
-local function clickScreen()
-  	local screenSize = camera.ViewportSize
+local function tapDown()
+	local screenSize = camera.ViewportSize
 	VIP:SendTouchEvent(1, 0, screenSize.X/2, screenSize.Y/2)
-  	task.wait()
-  	VIP:SendTouchEvent(1, 2, screenSize.X/2, screenSize.Y/2)
 end
 
-task.wait(2)
+local function tapUp()
+	VIP:SendTouchEvent(1, 2, 1, 1)
+end
+
+local function clickScreen()
+	tapDown()
+  	task.wait()
+  	tapUp()
+end
 
 local autoFish = Instance.new("TextButton")
 autoFish.Name = "autoFish"
-autoFish.Position = UDim2.new(0,0,0.33,0)
+autoFish.Position = UDim2.new(0,0,0.13,0)
 autoFish.Size = UDim2.new(0.98,0,0.2,0)
 autoFish.BackgroundColor3 = Color3.fromRGB(50,100,50)
 autoFish.BackgroundTransparency = 0.8
@@ -124,5 +127,95 @@ autoFish.MouseButton1Click:Connect(function()
 		end
 		task.wait(0.5)
 		repeat clickScreen() task.wait() until fishingGame.Enabled == false or autoFish.Text ~= "Fishing!"
+	end
+end)
+
+local function makeCameraScriptable()
+	if camera.CameraType ~= Enum.CameraType.Scriptable then
+		camera.CameraType = Enum.CameraType.Scriptable
+	end
+end
+
+local function focusCamera(block)
+	makeCameraScriptable()
+	
+	camera.CFrame = CFrame.new(Player.Position, block.Position)
+end
+
+local timeout = 600
+
+local function mineBlock(block)
+	focusCamera(block.Position)
+	tapDown()
+	
+	local attempts = 0
+	
+	repeat 
+	attempts = attempts + 1 
+	task.wait() 
+	until block.Parent == nil or block.Transparency = 1 or attempts == timeout
+	
+	tapUp()
+end
+
+local distance = Instance.new("TextBox")
+distance.Name = "distance"
+distance.Position = UDim2.new(0,0,0.34,0)
+distance.Size = UDim2.new(0.98,0,0.19,0)
+distance.BackgroundColor3 = Color3.fromRGB(50,100,50)
+distance.BackgroundTransparency = 0.8
+distance.BorderColor3 = Color3.new(1,1,1)
+distance.ZIndex = 2
+distance.Parent = mainBackground
+distance.PlaceholderText = "Distance from character"
+distance.Text = ""
+distance.TextStrokeTransparency = 0
+distance.TextColor3 = Color3.new(1,1,1)
+distance.TextScaled = true
+
+local autoMine = Instance.new("TextButton")
+autoMine.Name = "autoMine"
+autoMine.Position = UDim2.new(0,0,0.53,0)
+autoMine.Size = UDim2.new(0.98,0,0.2,0)
+autoMine.BackgroundColor3 = Color3.fromRGB(50,100,50)
+autoMine.BackgroundTransparency = 0.8
+autoMine.BorderColor3 = Color3.new(1,1,1)
+autoMine.ZIndex = 2
+autoMine.Parent = mainBackground
+autoMine.Text = "Auto-Mine"
+autoMine.TextStrokeTransparency = 0
+autoMine.TextColor3 = Color3.new(1,1,1)
+autoMine.TextScaled = true
+autoMine.MouseButton1Click:Connect(function()
+
+	if autoMine.Text ~= "Auto-Mine" then
+		autoMine.Text = "Auto-Mine"
+		autoMine.BackgroundColor3 = Color3.fromRGB(100, 50, 50)
+		return
+	end
+	
+	local digsiteFolder = activeInstances:FindFirstChild("Digsite")
+	if not digsiteFolder then return end
+
+	local important = digsiteFolder:FindFirstChild("Important")
+	if not important then return end
+
+	local activeBlocks = important:FindFirstChild("ActiveBlocks")
+	if not activeBlocks then return end
+	
+	autoMine.Text = "Mining!"
+	autoMine.BackgroundColor3 = Color3.fromRGB(50,100,50)
+
+	while autoMine.Text == "Mining!" do
+	
+		for _,block in pairs(activeBlocks:GetChildren()) do
+		
+			if distance.Text == nil or distance.Text == "" then distance.Text = 30 end
+		
+			if block:IsA("Part") (HR.Position - block.Position).Magnitude < distance.Text then
+				mineBlock(block)
+			end		
+		end
+
 	end
 end)
