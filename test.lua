@@ -156,7 +156,7 @@ local function mineBlock(block)
 	repeat 
 	attempts = attempts + 1 
 	task.wait() 
-	until block.Parent == nil or block.Transparency == 1 or attempts == timeout
+	until block == nil or block.Parent == nil or block.Transparency == 1 or attempts == timeout
 	
 	tapUp()
 end
