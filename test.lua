@@ -217,6 +217,7 @@ autoMine.MouseButton1Click:Connect(function()
 	autoMine.BackgroundColor3 = Color3.fromRGB(50,100,50)
 
 	while autoMine.Text == "Mining!" do
+			task.wait()
 		for _,chest in pairs(activeChests:GetChildren()) do
 			
 			if distance.Text == nil or distance.Text == "" then distance.Text = 20 end
