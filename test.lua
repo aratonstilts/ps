@@ -211,6 +211,8 @@ autoMine.MouseButton1Click:Connect(function()
 	local activeBlocks = important:FindFirstChild("ActiveBlocks")
 	if not activeBlocks then return end
 	
+	local activeChests = important:FindFirstChild("ActiveChests")
+	
 	autoMine.Text = "Mining!"
 	autoMine.BackgroundColor3 = Color3.fromRGB(50,100,50)
 
@@ -218,11 +220,24 @@ autoMine.MouseButton1Click:Connect(function()
 	
 		for _,block in pairs(activeBlocks:GetChildren()) do
 		
-			if distance.Text == nil or distance.Text == "" then distance.Text = 30 end
+			if distance.Text == nil or distance.Text == "" then distance.Text = 20 end
 		
 			if block:IsA("Part") and (HR.Position - block.Position).Magnitude < tonumber(distance.Text) then
 				mineBlock(block)
 			end		
+		end
+		
+		for _,chest in pairs(activeChests:GetChildren()) do
+			
+			if distance.Text == nil or distance.Text == "" then distance.Text = 20 end
+			
+			if block:IsA("Model") and (HR.Position - block.PrimaryPart.Position).Magnitude < tonumber(distance.Text) then
+				mineBlock(block.PrimaryPart)
+			end	
+			
+			if block:IsA("Part") or block:IsA("MeshPart") and (HR.Position - block.Position).Magnitude < tonumber(distance.Text) then
+				mineBlock(block)
+			end	
 		end
 
 	end
