@@ -217,16 +217,6 @@ autoMine.MouseButton1Click:Connect(function()
 	autoMine.BackgroundColor3 = Color3.fromRGB(50,100,50)
 
 	while autoMine.Text == "Mining!" do
-	
-		for _,block in pairs(activeBlocks:GetChildren()) do
-		
-			if distance.Text == nil or distance.Text == "" then distance.Text = 20 end
-		
-			if block:IsA("Part") and (HR.Position - block.Position).Magnitude < tonumber(distance.Text) then
-				mineBlock(block)
-			end		
-		end
-		
 		for _,chest in pairs(activeChests:GetChildren()) do
 			
 			if distance.Text == nil or distance.Text == "" then distance.Text = 20 end
@@ -239,6 +229,18 @@ autoMine.MouseButton1Click:Connect(function()
 				mineBlock(chest)
 			end	
 		end
+		
+		for _,block in pairs(activeBlocks:GetChildren()) do
+		
+			if distance.Text == nil or distance.Text == "" then distance.Text = 20 end
+		
+			if block:IsA("Part") and (HR.Position - block.Position).Magnitude < tonumber(distance.Text) then
+				mineBlock(block)
+				break
+			end		
+		end
+		
+		
 
 	end
 end)
