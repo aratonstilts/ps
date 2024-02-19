@@ -271,8 +271,8 @@ autoMine.MouseButton1Click:Connect(function()
 			
 			if HR.Position.Y > 60 then
 				if miningArea == "AdvancedDigsite" then
-					Humanoid:MoveTo(Vector3.new(638,59,-2509))
-					Humanoid.MoveToFinished:Wait()
+					humanoid:MoveTo(Vector3.new(638,59,-2509))
+					humanoid.MoveToFinished:Wait()
 				end
 			end
 			
