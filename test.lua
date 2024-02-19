@@ -214,7 +214,6 @@ regular.TextScaled = true
 Advanced.MouseButton1Click:Connect(function()
 	if regular.BackgroundColor3 == Color3.fromRGB(150,250,150) then
 		regular.BackgroundColor3 = Color3.fromRGB(50,100,50)
-		return
 	end
 	
 	miningArea = "AdvancedDigsite"
@@ -224,7 +223,6 @@ end)
 regular.MouseButton1Click:Connect(function()
 	if Advanced.BackgroundColor3 == Color3.fromRGB(150,250,150) then
 		Advanced.BackgroundColor3 = Color3.fromRGB(50,100,50)
-		return
 	end
 	
 	miningArea = "Digsite"
