@@ -1,6 +1,7 @@
 local Player = game:GetService("Players").LocalPlayer
 local character = Player.Character or Player.CharacterAdded:Wait()
 local HR = character:WaitForChild("HumanoidRootPart")
+local humanoid = character:WaitForChild("Humanoid")
 local playerGUI = Player.PlayerGui
 local instances = playerGUI:WaitForChild("_INSTANCES")
 local fishingGame = instances:WaitForChild("FishingGame")
@@ -159,7 +160,7 @@ local function mineBlock(block)
 	repeat 
 	attempts = attempts + 1 
 	task.wait() 
-	until block == nil or block.Parent == nil or block.Transparency == 1 or attempts == timeout
+	until block == nil or block.Parent == nil or block.Transparency == 1 or HR.Position.Y > 60 or attempts == timeout
 	
 	tapUp()
 	Player.CameraMaxZoomDistance = 60
@@ -267,6 +268,14 @@ autoMine.MouseButton1Click:Connect(function()
 
 	while autoMine.Text == "Mining!" do
 			task.wait()
+			
+			if HR.Position.Y > 60 then
+				if miningArea == "AdvancedDigsite" then
+					Humanoid:MoveTo(Vector3.new(638,59,-2509))
+					Humanoid.MoveToFinished:Wait()
+				end
+			end
+			
 		for _,chest in pairs(activeChests:GetChildren()) do
 			
 			if distance.Text == nil or distance.Text == "" then distance.Text = 20 end
