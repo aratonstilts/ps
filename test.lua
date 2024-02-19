@@ -231,12 +231,12 @@ autoMine.MouseButton1Click:Connect(function()
 			
 			if distance.Text == nil or distance.Text == "" then distance.Text = 20 end
 			
-			if block:IsA("Model") and (HR.Position - block.PrimaryPart.Position).Magnitude < tonumber(distance.Text) then
-				mineBlock(block.PrimaryPart)
+			if chest:IsA("Model") and (HR.Position - chest.PrimaryPart.Position).Magnitude < tonumber(distance.Text) then
+				mineBlock(chest.PrimaryPart)
 			end	
 			
-			if block:IsA("Part") or block:IsA("MeshPart") and (HR.Position - block.Position).Magnitude < tonumber(distance.Text) then
-				mineBlock(block)
+			if chest:IsA("Part") or chest:IsA("MeshPart") and (HR.Position - chest.Position).Magnitude < tonumber(distance.Text) then
+				mineBlock(chest)
 			end	
 		end
 
