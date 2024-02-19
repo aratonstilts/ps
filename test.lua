@@ -162,7 +162,7 @@ local function mineBlock(block)
 	until block == nil or block.Parent == nil or block.Transparency == 1 or attempts == timeout
 	
 	tapUp()
-	player.CameraMaxZoomDistance = 60
+	Player.CameraMaxZoomDistance = 60
 end
 
 local distance = Instance.new("TextBox")
