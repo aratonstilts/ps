@@ -180,6 +180,57 @@ distance.TextStrokeTransparency = 0
 distance.TextColor3 = Color3.new(1,1,1)
 distance.TextScaled = true
 
+local miningArea = "Digsite"
+
+local Advanced = Instance.new("TextButton")
+Advanced.Name = "Advanced"
+Advanced.Position = UDim2.new(0,0,0.73,0)
+Advanced.Size = UDim2.new(0.49,0,0.2,0)
+Advanced.BackgroundColor3 = Color3.fromRGB(50,100,50)
+Advanced.BackgroundTransparency = 0.8
+Advanced.BorderColor3 = Color3.new(1,1,1)
+Advanced.ZIndex = 2
+Advanced.Parent = mainBackground
+Advanced.Text = "Advanced"
+Advanced.TextStrokeTransparency = 0
+Advanced.TextColor3 = Color3.new(1,1,1)
+Advanced.TextScaled = true
+
+
+local regular = Instance.new("TextButton")
+regular.Name = "regular"
+regular.Position = UDim2.new(0.5,0,0.73,0)
+regular.Size = UDim2.new(0.49,0,0.2,0)
+regular.BackgroundColor3 = Color3.fromRGB(50,100,50)
+regular.BackgroundTransparency = 0.8
+regular.BorderColor3 = Color3.new(1,1,1)
+regular.ZIndex = 2
+regular.Parent = mainBackground
+regular.Text = "regular"
+regular.TextStrokeTransparency = 0
+regular.TextColor3 = Color3.new(1,1,1)
+regular.TextScaled = true
+
+Advanced.MouseButton1Click:Connect(function()
+	if regular.BackgroundColor3 == Color3.fromRGB(150,250,150) then
+		regular.BackgroundColor3 = Color3.fromRGB(50,100,50)
+		return
+	end
+	
+	miningArea = "AdvancedDigsite"
+	Advanced.BackgroundColor3 = Color3.fromRGB(150,250,150)
+end)
+
+regular.MouseButton1Click:Connect(function()
+	if Advanced.BackgroundColor3 == Color3.fromRGB(150,250,150) then
+		Advanced.BackgroundColor3 = Color3.fromRGB(50,100,50)
+		return
+	end
+	
+	miningArea = "Digsite"
+	regular.BackgroundColor3 = Color3.fromRGB(150,250,150)
+end)
+
 local autoMine = Instance.new("TextButton")
 autoMine.Name = "autoMine"
 autoMine.Position = UDim2.new(0,0,0.53,0)
@@ -202,7 +253,7 @@ autoMine.MouseButton1Click:Connect(function()
 		return
 	end
 	
-	local digsiteFolder = activeInstances:FindFirstChild("Digsite")
+	local digsiteFolder = activeInstances:FindFirstChild(miningArea)
 	if not digsiteFolder then return end
 
 	local important = digsiteFolder:FindFirstChild("Important")
