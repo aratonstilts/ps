@@ -135,7 +135,7 @@ end)
 
 local function makeCameraScriptable()
 
-	player.CameraMaxZoomDistance = 0.01
+	Player.CameraMaxZoomDistance = 0.01
 	
 	if camera.CameraType ~= Enum.CameraType.Scriptable then
 		camera.CameraType = Enum.CameraType.Scriptable
